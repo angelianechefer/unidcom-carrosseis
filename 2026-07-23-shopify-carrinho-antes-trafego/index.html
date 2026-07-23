@@ -25,6 +25,15 @@ body { display: flex; flex-direction: column; align-items: center; gap: 16px; pa
 .slide-solid, .slide-final { background: #13A24B; color: #fff; }
 .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .cover-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.05) 0%, rgba(0,0,0,.22) 36%, rgba(0,0,0,.82) 70%, rgba(0,0,0,.98) 100%); }
+
+.slide-cover .photo { object-position: center -62px; }
+.slide-cover .cover-overlay { background: linear-gradient(to bottom, rgba(0,0,0,.03) 0%, rgba(0,0,0,.10) 43%, rgba(0,0,0,.74) 72%, rgba(0,0,0,.98) 100%); }
+.slide-cover .cover-content { bottom: 34px; padding-top: 18px; }
+.slide-cover h1 { font-size: 34px; line-height: .96; max-width: 372px; margin-bottom: 10px; }
+.slide-cover .kicker { font-size: 17px; margin-bottom: 6px; }
+.slide-cover .support { font-size: 13.5px; line-height: 1.32; max-width: 360px; }
+.slide-cover .cta-pill { margin-top: 12px; padding: 9px 15px; }
+.slide-cover .logo-corner { bottom: 13px; }
 .cover-content { position: absolute; left: 24px; right: 24px; bottom: 56px; z-index: 2; }
 .kicker { margin: 0 0 8px; color: #13A24B; font-size: 19px; line-height: 1.12; font-weight: 800; font-style: italic; }
 .solid-kicker { color: #fff; }
