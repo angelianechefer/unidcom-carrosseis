@@ -60,9 +60,24 @@ async function waitForExportReady(expectedSlides=7){
     img.addEventListener('error',()=>reject(new Error(`Imagem falhou ao carregar: ${img.alt||img.src.slice(0,48)}`)),{once:true});
   })));
   for(const img of images){if(!img.naturalWidth) throw new Error(`Imagem sem dimensão natural: ${img.alt||img.src.slice(0,48)}`);}
-  for(const slide of slides){
-    const rect=slide.getBoundingClientRect();
-    if(Math.round(rect.width)!==420||Math.round(rect.height)!==525) throw new Error(`Dimensão inválida em ${slide.id||slide.dataset.slide||'slide'}: ${Math.round(rect.width)}x${Math.round(rect.height)}`);
+  const originalStates=slides.map(slide=>({display:slide.style.display,visibility:slide.style.visibility,position:slide.style.position}));
+  try{
+    slides.forEach(slide=>{
+      slide.style.display=slide.classList.contains('split')?'grid':slide.classList.contains('cta')?'flex':'block';
+      slide.style.visibility='hidden';
+      slide.style.position='absolute';
+    });
+    await new Promise(requestAnimationFrame);
+    for(const slide of slides){
+      const rect=slide.getBoundingClientRect();
+      if(Math.round(rect.width)!==420||Math.round(rect.height)!==525) throw new Error(`Dimensão inválida em ${slide.id||slide.dataset.slide||'slide'}: ${Math.round(rect.width)}x${Math.round(rect.height)}`);
+    }
+  }finally{
+    slides.forEach((slide,index)=>{
+      slide.style.display=originalStates[index].display;
+      slide.style.visibility=originalStates[index].visibility;
+      slide.style.position=originalStates[index].position;
+    });
   }
   await new Promise(requestAnimationFrame);
   await new Promise(resolve=>setTimeout(resolve,250));
