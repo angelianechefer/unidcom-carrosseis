@@ -94,11 +94,26 @@ async function waitForExportReady(expectedSlides=EXPECTED_SLIDES){
   for(const img of images){
     if(!img.naturalWidth) throw new Error(`Imagem sem dimensão natural: ${img.alt||img.src.slice(0,48)}`);
   }
-  for(const slide of currentSlides){
-    const rect=slide.getBoundingClientRect();
-    if(Math.round(rect.width)!==420||Math.round(rect.height)!==525){
-      throw new Error(`Dimensão inválida em slide: ${Math.round(rect.width)}x${Math.round(rect.height)}`);
+  const originalStates=currentSlides.map(slide=>({display:slide.style.display,visibility:slide.style.visibility,position:slide.style.position}));
+  try{
+    currentSlides.forEach(slide=>{
+      slide.style.display=slide.classList.contains('split')?'grid':slide.classList.contains('cta')?'flex':'block';
+      slide.style.visibility='hidden';
+      slide.style.position='absolute';
+    });
+    await new Promise(requestAnimationFrame);
+    for(const slide of currentSlides){
+      const rect=slide.getBoundingClientRect();
+      if(Math.round(rect.width)!==420||Math.round(rect.height)!==525){
+        throw new Error(`Dimensão inválida em slide: ${Math.round(rect.width)}x${Math.round(rect.height)}`);
+      }
     }
+  }finally{
+    currentSlides.forEach((slide,index)=>{
+      slide.style.display=originalStates[index].display;
+      slide.style.visibility=originalStates[index].visibility;
+      slide.style.position=originalStates[index].position;
+    });
   }
   await new Promise(requestAnimationFrame);
   await pause(250);
