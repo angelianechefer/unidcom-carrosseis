@@ -68,8 +68,9 @@ p { margin: 0; font-size: 15px; line-height: 1.42; font-weight: 650; }
 .cta-content p { margin-bottom: 16px; color: #0A6DBF; font-size: 12px; font-weight: 900; letter-spacing: 1.4px; }
 .cta-content h2 { color: #fff; font-size: 30px; }
 .cta-content span { margin-top: 18px; color: #eee; font-size: 15px; font-style: italic; font-weight: 700; line-height: 1.35; }
-.icons { display: flex; gap: 12px; margin-top: 26px; }
-.icons svg { width: 34px; height: 34px; padding: 8px; border: 1.5px solid #0A6DBF; border-radius: 50%; fill: none; stroke: #fff; stroke-width: 1.8; }
+.icons { display: flex; gap: 12px; margin-top: 26px; align-items: center; justify-content: center; }
+.icon-circle { width: 34px; height: 34px; flex: 0 0 34px; border: 1.5px solid #0A6DBF; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; }
+.icon-circle svg { width: 19px; height: 19px; display: block; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .cta-content small { margin-top: 14px; color: #bbb; font-size: 9px; font-weight: 800; letter-spacing: 1.1px; }
 .progress { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.18); z-index: 12; }
 .progress span { display: block; height: 100%; background: #0A6DBF; }
@@ -178,11 +179,11 @@ p { margin: 0; font-size: 15px; line-height: 1.42; font-weight: 650; }
         <p>MARKETING COM CRITÉRIO</p>
         <h2>IA NÃO SUBSTITUI ESTRATÉGIA. ELA EXPÕE A FALTA DELA.</h2>
         <span>Salve para discutir com seu time de mídia.</span>
-        <div class="icons">
-          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l7.78-7.78a5.5 5.5 0 0 0 1.06-8.84z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        <div class="icons" aria-hidden="true">
+          <span class="icon-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l7.78-7.78a5.5 5.5 0 0 0 1.06-8.84z"/></svg></span>
+          <span class="icon-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="icon-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="icon-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></span>
         </div>
         <small>CURTA · SALVE · COMENTE · COMPARTILHE</small>
       </div>
