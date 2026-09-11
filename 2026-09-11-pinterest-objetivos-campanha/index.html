@@ -84,22 +84,34 @@ Sua equipe escolhe objetivo de campanha pelo nome da plataforma ou pela meta rea
   }
 
   function prepareExportClone(doc) {
-    doc.querySelectorAll('.photo,.split-photo img,.bottom-photo img,.ghost').forEach((img) => {
+    const selector = '.photo,.s2-photo-center img,.split-photo img,.bottom-photo img';
+    doc.querySelectorAll(selector).forEach((img) => {
       const parent = img.parentElement;
       const style = doc.defaultView.getComputedStyle(img);
       const background = doc.createElement('div');
-      parent.style.position = 'relative';
+      const zIndex = style.zIndex === 'auto' ? '0' : style.zIndex;
+
+      parent.style.position = parent.style.position || 'relative';
       background.setAttribute('aria-hidden', 'true');
+      background.className = 'export-image-bg';
       background.style.cssText = [
-        'position:absolute',
-        'inset:0',
+        'position:' + (style.position === 'static' ? 'absolute' : style.position),
+        'left:' + (style.left === 'auto' ? '0px' : style.left),
+        'top:' + (style.top === 'auto' ? '0px' : style.top),
+        'right:' + (style.right === 'auto' ? '0px' : style.right),
+        'bottom:' + (style.bottom === 'auto' ? '0px' : style.bottom),
+        'width:' + style.width,
+        'height:' + style.height,
+        'z-index:' + zIndex,
         "background-image:url('" + (img.currentSrc || img.src) + "')",
         'background-size:cover',
-        'background-position:' + (style.objectPosition || 'center'),
+        'background-position:' + (style.objectPosition || '50% 50%'),
         'background-repeat:no-repeat',
         'filter:' + (style.filter || 'none'),
-        'opacity:' + (style.opacity || '1')
+        'opacity:' + (style.opacity || '1'),
+        'pointer-events:none'
       ].join(';') + ';';
+
       parent.insertBefore(background, img);
       img.style.visibility = 'hidden';
     });
@@ -110,7 +122,11 @@ Sua equipe escolhe objetivo de campanha pelo nome da plataforma ou pela meta rea
     return html2canvas(slide, {
       scale: 1080 / 420,
       useCORS: true,
+      allowTaint: false,
       backgroundColor: null,
+      width: 420,
+      height: 525,
+      logging: false,
       onclone: prepareExportClone
     });
   }
