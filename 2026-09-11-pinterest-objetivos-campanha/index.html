@@ -91,7 +91,8 @@ Sua equipe escolhe objetivo de campanha pelo nome da plataforma ou pela meta rea
       const background = doc.createElement('div');
       const zIndex = style.zIndex === 'auto' ? '0' : style.zIndex;
 
-      parent.style.position = parent.style.position || 'relative';
+      const parentStyle = doc.defaultView.getComputedStyle(parent);
+      if (parentStyle.position === 'static') parent.style.position = 'relative';
       background.setAttribute('aria-hidden', 'true');
       background.className = 'export-image-bg';
       background.style.cssText = [
