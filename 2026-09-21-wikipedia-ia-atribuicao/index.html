@@ -146,6 +146,30 @@
 <br>A pergunta para lideran&ccedil;as de marketing &eacute; simples: quando a IA usa seu conte&uacute;do, ela tamb&eacute;m ajuda o mercado a lembrar da sua marca?<br>
 <br>#MarketingB2B #GEO #InteligenciaArtificial #EstrategiaDeConteudo #GeracaoDeDemanda</section>
 <script>let n=0,s=[...document.querySelectorAll('.slide')];function go(x){s[n].classList.remove('active');n=(n+x+s.length)%s.length;s[n].classList.add('active');document.querySelector('#count').textContent=`${n+1} / ${s.length}`}function showSlide(i){s[n].classList.remove('active');n=i;s[n].classList.add('active');document.querySelector('#count').textContent=`${n+1} / ${s.length}`}async function exportAllSlides(){const p=document.querySelector('#exportProgress'),b=document.querySelector('#btnExport');b.disabled=true;for(let i=0;i<s.length;i++){showSlide(i);p.textContent=`Exportando ${i+1}/${s.length}`;await new Promise(r=>setTimeout(r,250));const c=await html2canvas(s[i],{scale:1080/420,useCORS:true,backgroundColor:null});const a=document.createElement('a');a.download=`wikipedia-ia-${String(i+1).padStart(2,'0')}.png`;a.href=c.toDataURL('image/png');a.click()}showSlide(0);p.textContent='PNGs prontos.';b.disabled=false}async function exportPDF(){const p=document.querySelector('#exportProgress'),b=document.querySelector('#btnPdf');b.disabled=true;const{jsPDF}=window.jspdf,pdf=new jsPDF({orientation:'portrait',unit:'px',format:[420,525],hotfixes:['px_scaling']});for(let i=0;i<s.length;i++){showSlide(i);p.textContent=`Gerando PDF ${i+1}/${s.length}`;await new Promise(r=>setTimeout(r,250));const c=await html2canvas(s[i],{scale:2,useCORS:true,backgroundColor:null});if(i)pdf.addPage([420,525]);pdf.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,420,525)}showSlide(0);pdf.save('carrossel-wikipedia-ia.pdf');p.textContent='PDF pronto.';b.disabled=false}</script>
+<script>
+function prepareExportClone(doc){
+  doc.querySelectorAll('.photo>img:not(.brand),.photo-top>img:not(.brand)').forEach(img=>{
+    const cs=doc.defaultView.getComputedStyle(img),bg=doc.createElement('div');
+    bg.style.cssText=`position:${cs.position};inset:${cs.inset};left:${cs.left};top:${cs.top};right:${cs.right};bottom:${cs.bottom};width:${cs.width};height:${cs.height};z-index:${cs.zIndex};background:url('${img.currentSrc||img.src}') ${cs.objectPosition}/cover no-repeat;`;
+    img.parentNode.insertBefore(bg,img);img.style.visibility='hidden';
+  });
+}
+async function exportAllSlides(){
+  const p=document.querySelector('#exportProgress'),b=document.querySelector('#btnExport');b.disabled=true;
+  for(let i=0;i<s.length;i++){showSlide(i);p.textContent=`Exportando ${i+1}/${s.length}`;await new Promise(r=>setTimeout(r,300));
+    const c=await html2canvas(s[i],{scale:1080/420,useCORS:true,allowTaint:false,backgroundColor:null,width:420,height:525,onclone:prepareExportClone,logging:false});
+    const a=document.createElement('a');a.download=`wikipedia-ia-${String(i+1).padStart(2,'0')}.png`;a.href=c.toDataURL('image/png');a.click();await new Promise(r=>setTimeout(r,200));
+  }showSlide(0);p.textContent='PNGs prontos.';b.disabled=false;
+}
+async function exportPDF(){
+  const p=document.querySelector('#exportProgress'),b=document.querySelector('#btnPdf');b.disabled=true;
+  const {jsPDF}=window.jspdf,pdf=new jsPDF({orientation:'portrait',unit:'px',format:[420,525],hotfixes:['px_scaling']});
+  for(let i=0;i<s.length;i++){showSlide(i);p.textContent=`Gerando PDF ${i+1}/${s.length}`;await new Promise(r=>setTimeout(r,300));
+    const c=await html2canvas(s[i],{scale:2,useCORS:true,allowTaint:false,backgroundColor:null,width:420,height:525,onclone:prepareExportClone,logging:false});
+    if(i)pdf.addPage([420,525]);pdf.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,420,525);
+  }showSlide(0);pdf.save('carrossel-wikipedia-ia.pdf');p.textContent='PDF pronto.';b.disabled=false;
+}
+</script>
 </body>
 </html>
 
