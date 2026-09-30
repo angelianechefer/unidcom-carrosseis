@@ -100,7 +100,14 @@ document.querySelector('.note:first-child p').textContent=`🚨 Migração de si
       windowWidth: 420,
       windowHeight: 525,
       useCORS: true,
-      backgroundColor: null
+      backgroundColor: null,
+      onclone: (doc) => {
+        const clonedDeck = doc.querySelector('.deck');
+        if (clonedDeck) {
+          clonedDeck.style.transform = 'none';
+          clonedDeck.style.marginBottom = '0';
+        }
+      }
     });
   }
   async function pngs() {
