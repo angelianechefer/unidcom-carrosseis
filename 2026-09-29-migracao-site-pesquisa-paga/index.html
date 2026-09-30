@@ -95,6 +95,29 @@ document.querySelector('.note:first-child p').textContent=`🚨 Migração de si
     const deck = slide.closest('.deck');
     const previousTransform = deck.style.transform;
     const previousMargin = deck.style.marginBottom;
+    const photoRestorers = [...slide.querySelectorAll('img.photo')].map((img) => {
+      const frame = img.parentElement;
+      const computed = getComputedStyle(img);
+      const saved = {
+        backgroundImage: frame.style.backgroundImage,
+        backgroundSize: frame.style.backgroundSize,
+        backgroundPosition: frame.style.backgroundPosition,
+        backgroundRepeat: frame.style.backgroundRepeat,
+        visibility: img.style.visibility
+      };
+      frame.style.backgroundImage = `url("${img.currentSrc || img.src}")`;
+      frame.style.backgroundSize = 'cover';
+      frame.style.backgroundPosition = computed.objectPosition || 'center center';
+      frame.style.backgroundRepeat = 'no-repeat';
+      img.style.visibility = 'hidden';
+      return () => {
+        frame.style.backgroundImage = saved.backgroundImage;
+        frame.style.backgroundSize = saved.backgroundSize;
+        frame.style.backgroundPosition = saved.backgroundPosition;
+        frame.style.backgroundRepeat = saved.backgroundRepeat;
+        img.style.visibility = saved.visibility;
+      };
+    });
     deck.style.transform = 'none';
     deck.style.marginBottom = '0';
     await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
@@ -109,6 +132,7 @@ document.querySelector('.note:first-child p').textContent=`🚨 Migração de si
         backgroundColor: null
       });
     } finally {
+      photoRestorers.forEach(restore => restore());
       deck.style.transform = previousTransform;
       deck.style.marginBottom = previousMargin;
     }
