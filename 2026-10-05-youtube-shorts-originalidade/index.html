@@ -35,4 +35,33 @@ O algoritmo está reforçando uma regra que deveria orientar a estratégia mesmo
 
 Sua empresa está usando vídeo curto para repetir o mercado ou para ajudar o mercado a entender melhor um problema?
 
-#MarketingB2B #YouTubeShorts #ConteúdoOriginal #EstratégiaDeMarketing</p></article></section><script>let i=0,s=[...document.querySelectorAll('.slide')];function show(){s.forEach((x,n)=>x.classList.toggle('active',n===i));count.textContent=`${i+1} / ${s.length}`}function go(n){i=(i+n+s.length)%s.length;show()}async function pngs(){status.textContent='Exportando PNGs…';let old=i;for(let n=0;n<s.length;n++){i=n;show();await new Promise(r=>setTimeout(r,240));let c=await html2canvas(s[n],{scale:1080/420,useCORS:true,backgroundColor:null}),a=document.createElement('a');a.download=`youtube-shorts-originalidade-${String(n+1).padStart(2,'0')}.png`;a.href=c.toDataURL('image/png');a.click()}i=old;show();status.textContent='Exportação concluída.'}async function pdf(){status.textContent='Gerando PDF…';let old=i,d=new window.jspdf.jsPDF({orientation:'portrait',unit:'px',format:[420,525],hotfixes:['px_scaling']});for(let n=0;n<s.length;n++){i=n;show();await new Promise(r=>setTimeout(r,240));let c=await html2canvas(s[n],{scale:2,useCORS:true,backgroundColor:null});if(n)d.addPage([420,525]);d.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,420,525)}i=old;show();d.save('carrossel-youtube-shorts-originalidade.pdf');status.textContent='PDF baixado.'}</script></body></html>
+#MarketingB2B #YouTubeShorts #ConteúdoOriginal #EstratégiaDeMarketing</p></article></section><script>let i=0,s=[...document.querySelectorAll('.slide')];function show(){s.forEach((x,n)=>x.classList.toggle('active',n===i));count.textContent=`${i+1} / ${s.length}`}function go(n){i=(i+n+s.length)%s.length;show()}async function pngs(){status.textContent='Exportando PNGs…';let old=i;for(let n=0;n<s.length;n++){i=n;show();await new Promise(r=>setTimeout(r,240));let c=await html2canvas(s[n],{scale:1080/420,useCORS:true,backgroundColor:null}),a=document.createElement('a');a.download=`youtube-shorts-originalidade-${String(n+1).padStart(2,'0')}.png`;a.href=c.toDataURL('image/png');a.click()}i=old;show();status.textContent='Exportação concluída.'}async function pdf(){status.textContent='Gerando PDF…';let old=i,d=new window.jspdf.jsPDF({orientation:'portrait',unit:'px',format:[420,525],hotfixes:['px_scaling']});for(let n=0;n<s.length;n++){i=n;show();await new Promise(r=>setTimeout(r,240));let c=await html2canvas(s[n],{scale:2,useCORS:true,backgroundColor:null});if(n)d.addPage([420,525]);d.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,420,525)}i=old;show();d.save('carrossel-youtube-shorts-originalidade.pdf');status.textContent='PDF baixado.'}</script><script>
+function prepareExportClone(doc){
+  doc.querySelectorAll('img.bg').forEach(img=>{
+    const cs=doc.defaultView.getComputedStyle(img);
+    const bg=doc.createElement('div');
+    bg.setAttribute('aria-hidden','true');
+    bg.style.cssText=`position:${cs.position};inset:${cs.inset};left:${cs.left};top:${cs.top};right:${cs.right};bottom:${cs.bottom};width:${cs.width};height:${cs.height};z-index:${cs.zIndex};background-image:url('${img.currentSrc||img.src}');background-size:cover;background-position:${cs.objectPosition};background-repeat:no-repeat;`;
+    img.parentNode.insertBefore(bg,img);
+    img.style.visibility='hidden';
+  });
+}
+async function pngs(){
+  status.textContent='Exportando PNGs…';let old=i;
+  for(let n=0;n<s.length;n++){
+    i=n;show();await new Promise(r=>setTimeout(r,240));
+    let c=await html2canvas(s[n],{scale:1080/420,useCORS:true,allowTaint:false,backgroundColor:null,width:420,height:525,onclone:prepareExportClone}),a=document.createElement('a');
+    a.download=`youtube-shorts-originalidade-${String(n+1).padStart(2,'0')}.png`;a.href=c.toDataURL('image/png');a.click();
+  }
+  i=old;show();status.textContent='Exportação concluída.';
+}
+async function pdf(){
+  status.textContent='Gerando PDF…';let old=i,d=new window.jspdf.jsPDF({orientation:'portrait',unit:'px',format:[420,525],hotfixes:['px_scaling']});
+  for(let n=0;n<s.length;n++){
+    i=n;show();await new Promise(r=>setTimeout(r,240));
+    let c=await html2canvas(s[n],{scale:2,useCORS:true,allowTaint:false,backgroundColor:null,width:420,height:525,onclone:prepareExportClone});
+    if(n)d.addPage([420,525]);d.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,420,525);
+  }
+  i=old;show();d.save('carrossel-youtube-shorts-originalidade.pdf');status.textContent='PDF baixado.';
+}
+</script></body></html>
