@@ -15,6 +15,8 @@
     /* O estado do carrossel prevalece sobre os estilos de cada tipo de slide. */
     .slide:not(.active){display:none!important}
     .slide.active{display:flex!important}
+    /* Ajuste óptico: a haste da seta fica no centro geométrico do círculo. */
+    .pill .arrow{display:inline-flex;align-items:center;justify-content:center;flex:0 0 18px;width:18px;height:18px;padding:0 0 1px;line-height:1;font-size:13px}
     /* Layout 01 / Tipo C: fotografia no topo + bloco colorido inferior */
     .photo-top{background:var(--accent)!important;color:#fff!important}
     .photo-top .media{height:55%!important}
@@ -67,6 +69,7 @@ Como sua empresa transforma dados e tecnologia em uma troca de valor que o clien
 
 #MarketingB2B #IA #Meta #Estratégia</p></article></section>
   <script>
+    document.querySelector('#slide-3 .body').textContent='O Muse também retém uso semanal, e estaria superando ChatGPT e Grok em interesse inicial. Isso aponta para uma promessa percebida como útil, não só curiosa.';
     const slides=[...document.querySelectorAll('.slide')];let current=0;function showSlide(n){current=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===current));document.getElementById('count').textContent=`${current+1} / ${slides.length}`}function change(n){showSlide(current+n)}
     function prepareExportClone(doc){doc.querySelectorAll('.bg-img').forEach(img=>{const c=doc.defaultView.getComputedStyle(img),d=doc.createElement('div');d.style.cssText=`position:${c.position};inset:0;width:${c.width};height:${c.height};z-index:${c.zIndex};background:url('${img.currentSrc||img.src}') ${c.objectPosition}/cover no-repeat;`;img.parentNode.insertBefore(d,img);img.style.visibility='hidden'})}
     async function canvasFor(i){showSlide(i);await new Promise(r=>setTimeout(r,250));return html2canvas(slides[i],{scale:1080/420,useCORS:true,backgroundColor:null,width:420,height:525,onclone:prepareExportClone,logging:false})}
