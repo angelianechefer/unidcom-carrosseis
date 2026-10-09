@@ -59,7 +59,17 @@ Em um ambiente mais cético, credibilidade deixa de ser consequência da comunic
 #MarketingB2B #BrandTrust #ConteúdoB2B #EstratégiaDigital</p></article></section>
   <script>
     let current=0;const slides=[...document.querySelectorAll('.slide')];function showSlide(n){current=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===current));document.getElementById('count').textContent=`${current+1} / ${slides.length}`}
-    async function exportAllSlides(){const status=document.getElementById('status');for(let i=0;i<slides.length;i++){showSlide(i);status.textContent=`Exportando ${i+1} / 7`;await new Promise(r=>setTimeout(r,250));const canvas=await html2canvas(slides[i],{scale:1080/420,useCORS:true,backgroundColor:null});const a=document.createElement('a');a.download=`redes-confianca-${String(i+1).padStart(2,'0')}.png`;a.href=canvas.toDataURL('image/png');a.click()}showSlide(0);status.textContent='Exportação concluída.'}
+    function prepareExportClone(exportDocument){
+      exportDocument.querySelectorAll('img.bg').forEach(image=>{
+        const style=exportDocument.defaultView.getComputedStyle(image);
+        const replacement=exportDocument.createElement('div');
+        replacement.className=image.className;
+        replacement.setAttribute('aria-hidden','true');
+        replacement.style.cssText=`position:absolute;inset:0;width:100%;height:100%;z-index:${style.zIndex};background-image:url("${image.currentSrc||image.src}");background-repeat:no-repeat;background-size:cover;background-position:${style.objectPosition||'center'};`;
+        image.replaceWith(replacement);
+      });
+    }
+    async function exportAllSlides(){const status=document.getElementById('status');for(let i=0;i<slides.length;i++){showSlide(i);status.textContent=`Exportando ${i+1} / ${slides.length}`;await new Promise(r=>setTimeout(r,250));const canvas=await html2canvas(slides[i],{scale:1080/420,useCORS:true,backgroundColor:null,onclone:prepareExportClone});const a=document.createElement('a');a.download=`redes-confianca-${String(i+1).padStart(2,'0')}.png`;a.href=canvas.toDataURL('image/png');a.click()}showSlide(0);status.textContent='Exportação concluída.'}
     async function exportPDF(){
       const status=document.getElementById('status');
       if(!window.jspdf){status.textContent='Biblioteca de PDF indisponível. Tente recarregar a página.';return}
@@ -70,7 +80,7 @@ Em um ambiente mais cético, credibilidade deixa de ser consequência da comunic
       for(let i=0;i<slides.length;i++){
         showSlide(i);status.textContent=`Gerando página ${i+1} / ${slides.length}`;
         await new Promise(r=>setTimeout(r,250));
-        const canvas=await html2canvas(slides[i],{scale:2,useCORS:true,backgroundColor:null});
+        const canvas=await html2canvas(slides[i],{scale:2,useCORS:true,backgroundColor:null,onclone:prepareExportClone});
         if(i>0)pdf.addPage([width,height]);
         pdf.addImage(canvas.toDataURL('image/jpeg',.92),'JPEG',0,0,width,height);
       }
