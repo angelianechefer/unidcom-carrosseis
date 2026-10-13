@@ -71,5 +71,12 @@ Quando a leitura do ranking fica menos confiável, a métrica mais importante é
     return html2canvas(slide,{scale,useCORS:true,backgroundColor:null,width:420,height:525,onclone:prepareExportClone});
   }
 </script>
+<script>
+  document.querySelectorAll('img').forEach(img=>{
+    if(img.getAttribute('src')==='../imagens/2026-10-09-google-rank-tracking-capa.png')img.src='assets/capa.jpg';
+    if(img.getAttribute('src')==='../imagens/2026-10-09-google-rank-tracking-slide-04.png')img.src='assets/slide-04.jpg';
+    if(img.getAttribute('src')==='../../.agents/skills/unidcom-carrossel/assets/logo-white.png')img.src='assets/logo-white.png';
+  });
+</script>
 </body>
 </html>
