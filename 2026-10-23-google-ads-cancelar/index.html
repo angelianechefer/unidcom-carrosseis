@@ -43,7 +43,7 @@ Quais sinais de mudança de fornecedor sua equipe pode estar deixando passar?
 <script>
 async function loadCarouselImages(){
  const nodes=[...document.querySelectorAll('[data-bg],[data-src]')];
- await Promise.all(nodes.map(async el=>{const src=await fetch(el.dataset.bg||el.dataset.src).then(r=>r.text());if(el.dataset.bg)el.style.backgroundImage=`url('${src}')`;else el.src=src;}));
+ await Promise.all(nodes.map(async el=>{const src=await fetch(el.dataset.bg||el.dataset.src).then(r=>r.text());if(el.dataset.bg){const img=document.createElement('img');img.src=src;img.alt='';img.style.cssText='width:100%;height:100%;object-fit:cover;display:block';el.replaceChildren(img);}else el.src=src;}));
 }
 loadCarouselImages();
 </script></body></html>
