@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google, apps conectados e anúncios | Unidcom</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js">
+</script>
+<style>:root{--g:#159447;--ink:#151715;--mint:#9ce1b0;--paper:#f6f5f0}*{box-sizing:border-box}body{margin:0;background:#edf0ee;color:var(--ink);font-family:Montserrat,Arial,sans-serif}.head{max-width:920px;margin:auto;padding:24px;display:flex;justify-content:space-between;align-items:end;gap:18px}.head p{margin:0;color:#617069;font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.head h1{font-size:20px;line-height:1.1;margin:6px 0 0}.deck,.slide{width:420px;height:525px}.deck{position:relative;overflow:hidden;margin:auto;box-shadow:0 16px 40px #1018112b}.slide{position:absolute;inset:0;display:none;overflow:hidden}.slide.active{display:flex}.logo{position:absolute;z-index:8;top:20px;left:20px;width:118px}.progress{position:absolute;z-index:10;left:0;bottom:0;height:3px;background:var(--g)}.lemon{font-weight:900;letter-spacing:-.045em;text-transform:uppercase;line-height:.96}.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.cover{color:#fff}.cover:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#00000015 18%,#00000030 45%,#000000f2 100%)}.covercopy{position:absolute;z-index:2;left:24px;right:24px;bottom:28px}.intro{margin:0 0 13px;font-size:14px;line-height:1.2;font-style:italic;font-weight:700;color:var(--mint)}.cover .intro{font-size:18px;color:#fff}.cover h2{font-size:31px;margin:0 0 12px}.cover h2 em,.accent{font-style:normal;color:var(--mint)}.cover-detail{font-size:12.4px;line-height:1.36;font-weight:700;margin:0 0 14px;max-width:335px}.pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:var(--g);padding:9px 15px;font-size:9.5px;font-weight:900;letter-spacing:.12em}.arrow{width:18px;height:18px;border-radius:50%;background:#fff;color:var(--g);display:grid;place-items:center;line-height:1;letter-spacing:0}.dark,.green,.info,.cta{padding:45px 24px 35px;flex-direction:column;justify-content:center}.dark,.info,.cta{background:var(--ink);color:#fff}.green{background:var(--g);color:#fff}.dark h2,.green h2{font-size:38px;margin:0 0 18px}.body{font-size:14px;font-weight:650;line-height:1.42;margin:0}.green .intro{color:#fff}.flow{display:flex;align-items:center;gap:7px;margin-top:15px}.app{width:74px;height:51px;border:1px solid #ffffff77;border-radius:9px;background:#ffffff12;padding:9px 7px;font-size:9px;font-weight:800;display:flex;align-items:end}.flow i{font-style:normal;font-size:17px;color:var(--mint)}.top{position:relative;background:#0c100d;color:#fff;padding:0 24px 31px;flex-direction:column;justify-content:flex-end}.topmedia{position:absolute;top:0;left:0;right:0;height:54%;overflow:hidden}.topmedia .photo{position:absolute}.topmedia:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0001,#0c100d)}.top .copy{position:relative;z-index:1}.top h2{font-size:29px;margin:0 0 12px}.top .body{font-size:13px}.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card{border:1px solid #ffffff70;border-radius:8px;padding:13px 11px;min-height:118px;background:#0002}.card strong{display:block;color:var(--mint);font-size:13px;text-transform:uppercase;line-height:1.15;margin-bottom:8px}.card span{font-size:11.5px;line-height:1.38;font-weight:650}.info h2{font-size:28px;margin:0 0 19px}.item{display:flex;gap:13px}.badge{flex:0 0 auto;width:35px;height:35px;display:grid;place-items:center;border-radius:8px;background:var(--g);font-weight:900}.item b{display:block;color:var(--mint);font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}.item p{font-size:12.3px;line-height:1.35;margin:0;color:#d6ded7}.line{height:1px;background:#ffffff1a;margin:12px 0}.cta{text-align:center;align-items:center}.cta .logo{left:50%;transform:translateX(-50%)}.cta h2{font-size:35px;margin:0 0 17px}.cta>div>p:not(.intro):not(.social){font-size:14px;line-height:1.35;margin:0 auto 19px;max-width:330px}.icons{display:flex;justify-content:center;gap:15px}.icons span{width:34px;height:34px;border:1px solid var(--g);border-radius:50%;display:grid;place-items:center;color:var(--mint)}.icons svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.social{font-size:10px!important;letter-spacing:.08em;text-transform:uppercase;color:var(--mint);margin-top:13px!important}.tools,.nav{display:flex;justify-content:center;align-items:center;gap:12px;margin:12px auto;flex-wrap:wrap}.tools button,.nav button{border:0;background:var(--g);color:#fff;padding:10px 15px;border-radius:20px;font:900 11px Montserrat;cursor:pointer}.tools button+button{background:var(--ink)}.tools span{width:100%;text-align:center;font-size:11px;color:#52605a}.nav button{width:38px;height:38px;padding:0;border-radius:50%;background:#fff;color:var(--ink);border:1px solid #cad3dd;font-size:22px}.nav span{min-width:45px;text-align:center;font-size:12px;font-weight:900}.notes{max-width:1050px;margin:30px auto 45px;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:20px}.note{background:#fff;border:1px solid #dce4df;padding:24px}.note h3{margin:0 0 10px;color:var(--g);font-size:12px;text-transform:uppercase}.note p{white-space:pre-line;margin:0;font-size:13px;line-height:1.5}@media(max-width:650px){.notes{grid-template-columns:1fr}.deck{transform:scale(.9);transform-origin:top center;margin-bottom:-45px}.head{padding:20px 16px 12px}.head h1{font-size:17px}}</style>
+</head>
+<body>
+<header class="head">
+<div>
+<p>Layout 01 · Privacidade, IA e mídia · Verde</p>
+<h1>O Google conecta apps aos anúncios no Modo IA, sem novos controles para anunciantes.</h1>
+</div>
+<p>Preview · 7 slides</p>
+</header>
+<div class="tools">
+<button onclick="pngs()">EXPORTAR PNG</button>
+<button onclick="pdf()">EXPORTAR PDF</button>
+<span id="status">
+</span>
+</div>
+<main class="deck">
+<section class="slide cover active">
+<img class="photo" src="assets/cover-google-apps-ads.png" alt="Google integrado a fluxos de Gmail, Fotos, Drive e sinais de IA">
+<img class="logo" style="left:50%;transform:translateX(-50%)" src="assets/logo-white.png" alt="Unidcom">
+<div class="covercopy">
+<p class="intro">Apps conectados podem influenciar a entrega.</p>
+<h2 class="lemon">SEU ANÚNCIO PODE SER DECIDIDO POR SINAIS QUE <em>VOCÊ NÃO VÊ.</em>
+</h2>
+<p class="cover-detail">O Google testa anúncios no Modo IA sem liberar novos controles para anunciantes.</p>
+<span class="pill">O QUE MUDA NO B2B <span class="arrow">→</span>
+</span>
+</div>
+<i class="progress" style="width:14.285%">
+</i>
+</section>
+<section class="slide dark">
+<img class="logo" src="assets/logo-white.png" alt="Unidcom">
+<p class="intro">A política de privacidade mudou em 16 de outubro.</p>
+<h2 class="lemon">APPS CONECTADOS PODEM AJUDAR A PERSONALIZAR <span class="accent">ANÚNCIOS.</span>
+</h2>
+<p class="body">Ao conectar apps ao Gemini ou ao Modo IA, informações compartilhadas podem influenciar os anúncios vistos pela pessoa.</p>
+<div class="flow">
+<span class="app">GMAIL</span>
+<i>+</i>
+<span class="app">FOTOS</span>
+<i>+</i>
+<span class="app">DRIVE</span>
+<i>→</i>
+<span class="app">MODO IA</span>
+</div>
+<i class="progress" style="width:28.57%">
+</i>
+</section>
+<section class="slide green">
+<img class="logo" src="assets/logo-white.png" alt="Unidcom">
+<p class="intro">Importante: não é acesso à caixa de entrada.</p>
+<h2 class="lemon">O ANUNCIANTE <span class="accent">NÃO</span> VÊ E-MAILS NEM FOTOS.</h2>
+<p class="body">Segundo a documentação, a Busca pode usar resumos, trechos e inferências dos apps conectados. O conteúdo bruto de e-mails ou da biblioteca de fotos não vira um segmento acessível no Google Ads.</p>
+<i class="progress" style="width:42.855%;background:#ffffff99">
+</i>
+</section>
+<section class="slide top">
+<div class="topmedia">
+<img class="photo" src="assets/decisao-entrega-ia-paisagem.png" alt="Apps conectados passam por uma camada de IA até a decisão de entrega do anúncio">
+</div>
+<img class="logo" src="assets/logo-white.png" alt="Unidcom">
+<div class="copy">
+<p class="intro">Para quem investe em mídia</p>
+<h2 class="lemon">A DECISÃO DE ENTREGA FICA MAIS <span class="accent">FORA DO PAINEL.</span>
+</h2>
+<p class="body">O usuário conecta os apps. O Google usa contexto. Seu anúncio pode aparecer sem indicar qual sinal contribuiu.</p>
+</div>
+<i class="progress" style="width:57.14%">
+</i>
+</section>
+<section class="slide dark">
+<img class="logo" src="assets/logo-white.png" alt="Unidcom">
+<p class="intro">O que o Google informou sobre elegibilidade</p>
+<h2 class="lemon">OS TESTES PASSAM PELAS CAMPANHAS QUE VOCÊ JÁ CONHECE.</h2>
+<div class="cards">
+<div class="card">
+<strong>Performance Max</strong>
+<span>Elegível aos testes no Modo IA.</span>
+</div>
+<div class="card">
+<strong>Shopping</strong>
+<span>Também está entre os formatos nomeados.</span>
+</div>
+</div>
+<i class="progress" style="width:71.425%">
+</i>
+</section>
+<section class="slide info">
+<img class="logo" src="assets/logo-white.png" alt="Unidcom">
+<p class="intro">O impacto prático para times B2B</p>
+<h2 class="lemon">NÃO HÁ NOVA ALAVANCA. HÁ MENOS VISIBILIDADE.</h2>
+<div class="item">
+<span class="badge">1</span>
+<div>
+<b>Sem segmentação nova</b>
+<p>Você não pode direcionar ou dar lances com base em insights de Gmail ou Google Fotos.</p>
+</div>
+</div>
+<div class="line">
+</div>
+<div class="item">
+<span class="badge">2</span>
+<div>
+<b>Sem relatório dedicado</b>
+<p>O Google não anunciou um relatório que mostre quando apps conectados influenciaram uma impressão.</p>
+</div>
+</div>
+<div class="line">
+</div>
+<div class="item">
+<span class="badge">3</span>
+<div>
+<b>AI Max não revela o sinal</b>
+<p>Termos, ativos e páginas de destino mostram desempenho, não a contribuição de Gmail ou Fotos.</p>
+</div>
+</div>
+<i class="progress" style="width:85.71%">
+</i>
+</section>
+<section class="slide cta">
+<img class="logo" src="assets/logo-white.png" alt="Unidcom">
+<div>
+<p class="intro">Para marketing B2B</p>
+<h2 class="lemon">MENOS CONTROLE NÃO É LICENÇA PARA OPERAR NO <em>AUTOMÁTICO.</em>
+</h2>
+<p>Revise a automação, fortaleça criativos e landing pages e acompanhe a conversão antes de escalar orçamento.</p>
+<div class="icons">
+<span>
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l7.8-7.8a5.5 5.5 0 0 0 1-8.6z"/>
+</svg>
+</span>
+<span>
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<path d="M6 3h12v18l-6-4-6 4z"/>
+</svg>
+</span>
+<span>
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<path d="M20 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/>
+</svg>
+</span>
+<span>
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<path d="m22 2-7 20-4-9-9-4z"/>
+</svg>
+</span>
+</div>
+<p class="social">CURTA · SALVE · COMENTE · COMPARTILHE</p>
+</div>
+<i class="progress" style="width:100%">
+</i>
+</section>
+</main>
+<nav class="nav">
+<button onclick="go(-1)">‹</button>
+<span id="count">1 / 7</span>
+<button onclick="go(1)">›</button>
+</nav>
+<section class="notes">
+<article class="note">
+<h3>Legenda Instagram</h3>
+<p>📩 Gmail. 🖼️ Google Fotos. 📁 Drive.
+
+Esses apps conectados podem ajudar o Google a personalizar anúncios no Modo IA. E o anunciante não ganha um novo botão para controlar isso. 👀
+
+O ponto de atenção para quem investe em mídia B2B:
+
+❌ Sem acesso a e-mails ou fotos.
+❌ Sem segmentação nova baseada nesses dados.
+❌ Sem relatório que revele quando esses sinais influenciaram uma impressão.
+
+O Google pode usar resumos, trechos e inferências gerados a partir dos apps conectados pela Personal Intelligence.
+
+📊 Na prática, a decisão de entrega fica ainda mais fora do painel.
+
+O que continua nas suas mãos?
+✅ Criativos que deixam a proposta clara.
+✅ Landing pages que sustentam a conversão.
+✅ Leitura criteriosa de resultado antes de escalar orçamento.
+
+Salve este post para revisar o nível de automação das suas campanhas. 🔖
+
+Fonte: Search Engine Journal, 27/10/2026.
+
+#MarketingB2B #GoogleAds #IA #PerformanceMax #AIMax</p>
+</article>
+<article class="note">
+<h3>Legenda LinkedIn</h3>
+<p>Google Ads no Modo IA ganha mais contexto. O anunciante, não mais controle.
+
+Essa é a implicação da atualização de privacidade do Google para quem opera mídia B2B.
+
+Desde 16 de outubro, quando uma pessoa conecta Gmail, Google Fotos ou Drive ao Gemini e à Busca por meio da Personal Intelligence, resumos, trechos e inferências desses apps podem ajudar a personalizar a experiência, inclusive os anúncios exibidos no Modo IA.
+
+Há limites importantes: o anunciante não acessa e-mails, fotos ou arquivos do usuário. Também não surge uma nova segmentação para criar, um lance específico para configurar ou um relatório que identifique quando esses sinais influenciaram uma impressão.
+
+O Google cita como elegíveis aos testes Performance Max, Shopping e campanhas de Pesquisa com correspondência ampla, incluindo AI Max. Isso não confirma que uma campanha tenha sido exibida para usuários da Personal Intelligence. E os relatórios atuais do AI Max não mostram a contribuição de Gmail ou Google Fotos para a entrega.
+
+Para times B2B, a discussão não deveria ser “como usar esse dado?”. Esse dado não está disponível no painel.
+
+A pergunta mais útil é: quanta automação a sua operação está recebendo sem um nível proporcional de visibilidade?
+
+Três ações continuam sob controle do time:
+
+1. Revisar a expansão de correspondência ampla e os critérios de escala.
+2. Fortalecer criativos, oferta e landing pages para responder à intenção que chega.
+3. Acompanhar conversão por campanha antes de ampliar orçamento.
+
+Automação pode aumentar o alcance. Governança é o que mantém a decisão de investimento defensável.
+
+Como sua equipe está equilibrando automação e visibilidade nas campanhas?
+
+Fonte: Search Engine Journal, “Google Privacy Policy Update Allows Connected Apps To Shape AI Mode Ads”, 27/10/2026.
+
+#MarketingB2B #GoogleAds #InteligenciaArtificial</p>
+</article>
+</section>
+<script>let i=0,s=[...document.querySelectorAll('.slide')];function show(){s.forEach((x,n)=>x.classList.toggle('active',n===i));count.textContent=`${i+1} / ${s.length}`}function go(n){i=(i+n+s.length)%s.length;show()}async function cap(n,z){i=n;show();await new Promise(r=>setTimeout(r,350));return html2canvas(s[n],{scale:z,useCORS:true,width:420,height:525})}async function pngs(){for(let n=0;n<s.length;n++){status.textContent=`Exportando ${n+1}/7`;let c=await cap(n,1080/420),a=document.createElement('a');a.download=`google-apps-conectados-ads-b2b-${n+1}.png`;a.href=c.toDataURL();a.click()}i=0;show();status.textContent='Concluído.'}async function pdf(){let d=new window.jspdf.jsPDF({orientation:'portrait',unit:'px',format:[420,525],hotfixes:['px_scaling']});for(let n=0;n<s.length;n++){let c=await cap(n,2);if(n)d.addPage([420,525]);d.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,420,525)}d.save('google-apps-conectados-ads-b2b.pdf');i=0;show()}show()</script>
+</body>
+</html>
