@@ -40,5 +40,23 @@ O trabalho agora é transformar expertise em ativos encontráveis: evidência pr
 Sua empresa está apenas aparecendo nas fontes ou já está se tornando uma referência que o mercado reconhece?
 
 #MarketingB2B #ChatGPT #GEO #SEO #InteligenciaArtificial</p></article></section>
-<script>const slides=[...document.querySelectorAll('.slide')];let current=0;function showSlide(n){current=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===current));counter.textContent=`${current+1} / ${slides.length}`}document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')showSlide(current-1);if(e.key==='ArrowRight')showSlide(current+1)});async function capture(i){showSlide(i);await new Promise(r=>setTimeout(r,150));return html2canvas(slides[i],{scale:2,useCORS:true})}async function exportSlides(){const before=current;status.textContent='Preparando…';for(let i=0;i<slides.length;i++){const canvas=await capture(i);const a=document.createElement('a');a.download=`unidcom-chatgpt-mencoes-${String(i+1).padStart(2,'0')}.png`;a.href=canvas.toDataURL('image/png');a.click()}showSlide(before);status.textContent='PNGs prontos.'}async function exportPDF(){const before=current;status.textContent='Preparando PDF…';const {jsPDF}=window.jspdf;const pdf=new jsPDF({orientation:'portrait',unit:'px',format:[420,525],hotfixes:['px_scaling']});for(let i=0;i<slides.length;i++){const canvas=await capture(i);if(i)pdf.addPage([420,525],'portrait');pdf.addImage(canvas.toDataURL('image/jpeg',.94),'JPEG',0,0,420,525,undefined,'FAST')}showSlide(before);pdf.save('unidcom-chatgpt-mencoes-b2b.pdf');status.textContent='PDF pronto.'}</script>
+<script>
+const slides=[...document.querySelectorAll('.slide')];let current=0;
+function showSlide(n){current=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===current));counter.textContent=`${current+1} / ${slides.length}`}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')showSlide(current-1);if(e.key==='ArrowRight')showSlide(current+1)});
+function preserveCoverImages(doc){
+  doc.querySelectorAll('.photo').forEach(img=>{
+    const style=doc.defaultView.getComputedStyle(img);
+    if(style.objectFit!=='cover')return;
+    const replacement=doc.createElement('div');
+    replacement.setAttribute('aria-hidden','true');
+    replacement.style.cssText=`position:absolute;inset:0;width:100%;height:100%;background:url("${img.currentSrc||img.src}") ${style.objectPosition}/cover no-repeat;filter:${style.filter};`;
+    img.before(replacement);
+    img.style.visibility='hidden';
+  });
+}
+async function capture(i){showSlide(i);await new Promise(requestAnimationFrame);return html2canvas(slides[i],{scale:2,useCORS:true,onclone:preserveCoverImages})}
+async function exportSlides(){const before=current;status.textContent='Preparando…';for(let i=0;i<slides.length;i++){const canvas=await capture(i);const a=document.createElement('a');a.download=`unidcom-chatgpt-mencoes-${String(i+1).padStart(2,'0')}.png`;a.href=canvas.toDataURL('image/png');a.click()}showSlide(before);status.textContent='PNGs prontos.'}
+async function exportPDF(){const before=current;status.textContent='Preparando PDF…';const {jsPDF}=window.jspdf;const pdf=new jsPDF({orientation:'portrait',unit:'px',format:[420,525],hotfixes:['px_scaling']});for(let i=0;i<slides.length;i++){const canvas=await capture(i);if(i)pdf.addPage([420,525],'portrait');pdf.addImage(canvas.toDataURL('image/jpeg',.94),'JPEG',0,0,420,525,undefined,'FAST')}showSlide(before);pdf.save('unidcom-chatgpt-mencoes-b2b.pdf');status.textContent='PDF pronto.'}
+</script>
 </body></html>
